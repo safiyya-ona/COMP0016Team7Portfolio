@@ -4,7 +4,7 @@ class MenuBar extends HTMLElement {
     }
     connectedCallback() {
         // this.innerHTML = menubarHTML.toString();
-        this.innerHTML = `<nav class="nav navbar navbar-expand-lg navbar-light fixed-top" id="mainNav">
+        this.innerHTML = `<nav class="nav navbar sticky-top navbar-expand-lg navbar-light bg-light fixed-top wow slideInDown" id="mainNav">
         <div class="container">
             <a class="navbar-brand" href="index.html">
                 <h3>Clinical QR Kit</h3>
@@ -46,13 +46,13 @@ class MenuBar extends HTMLElement {
                                 </a>
                             </li>
                             <li>
-                                <a class="dropdown-item scroll-to-section"  href="index.html#management">
-                                    Project Management
+                                <a class="dropdown-item scroll-to-section"  href="index.html#team">
+                                    Meet the Team
                                 </a>
                             </li>
                             <li>
-                                <a class="dropdown-item scroll-to-section"  href="index.html#team">
-                                    Team
+                                <a class="dropdown-item scroll-to-section"  href="index.html#management">
+                                    Project Management
                                 </a>
                             </li>
                         </ul>
@@ -226,7 +226,7 @@ class MenuBar extends HTMLElement {
                                 </a>
                             </li>
                             <li>
-                                <a class="dropdown-item scroll-to-section"  href="implementation.html#sharingSystem">
+                                <a class="dropdown-item scroll-to-section"  href="implementation.html#sharing">
                                     Sharing System
                                 </a>
                             </li>
@@ -265,7 +265,7 @@ class MenuBar extends HTMLElement {
                                 </a>
                             </li>
                             <li>
-                                <a class="dropdown-item scroll-to-section"  href="testing.html#userAcceptance">
+                                <a class="dropdown-item scroll-to-section"  href="testing.html#acceptance">
                                     User Acceptance Testing
                                 </a>
                             </li>
