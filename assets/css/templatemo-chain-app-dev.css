@@ -123,6 +123,13 @@ ul {
   margin-bottom: 0px;
 }
 
+.dropdown:hover .dropdown-menu {
+  display: block;
+}
+.dropdown-menu {
+  margin-top: 0px;
+}
+
 p {
   font-size: 15px;
   line-height: 30px;
