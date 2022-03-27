@@ -2,7 +2,7 @@
 <!DOCTYPE html>
 <html lang="en">
     <head>
-        <title>Week 5-6: Implementing Frontend and Backend </title>
+        <title>Week 13-14: FAQs, Refactoring and Deployment</title>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=2.0">
 <link rel="stylesheet" href="/2021/group7/blog/css/style.css">
@@ -74,11 +74,11 @@
             <article class="al_article">
                 <header>
                     <h1 class="al_page_title">
-                        Week 5-6: Implementing Frontend and Backend 
+                        Week 13-14: FAQs, Refactoring and Deployment
                     </h1>
                     <div class="al_page_info dis_flex">
                         <div class="al_page_content_info">
-                            Fri January 14, 2022 02:08 PM
+                            Mon March 14, 2022 11:00 PM
                         </div>
 
                         
@@ -90,19 +90,21 @@
 
                 
                     <div class="al_page_content_outline">
-                        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#Login-Page"><span class="toc-text">Login Page</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Home-Page"><span class="toc-text">Home Page</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Equipment-Table"><span class="toc-text">Equipment Table</span></a></li></ol>
+                        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#FAQs"><span class="toc-text">FAQs</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Refactoring-Code"><span class="toc-text">Refactoring Code</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Deployment"><span class="toc-text">Deployment</span></a></li></ol>
                     </div>
                 
 
                 
                 <section id="post-body">
-                    <h2 id="Login-Page"><a href="#Login-Page" class="headerlink" title="Login Page"></a>Login Page</h2><p>In Week 5 and the Christmas break, we started to implement the login system for the website. Here we made user groups for the clinical staff, and log in pages for them as well as the hospital and trust admins. Implementing the log in at this stage was necessary to build upon our app and to manage what certain users of the kit could use. After logging in, the user was taking to the home page with various buttons and icons to showcase the different pages to navigate towards. </p>
-<img src="/2021/group7/blog/2022/01/14/w5/login.png" class="">
-<h2 id="Home-Page"><a href="#Home-Page" class="headerlink" title="Home Page"></a>Home Page</h2><p>To implement the user groups, the database was also developed. Having a central database allows multiple logins to be stored in one place, reducing the need to create individual systems across trusts and making the program more extendable. </p>
-<img src="/2021/group7/blog/2022/01/14/w5/homepage.png" class="">
+                    <h2 id="FAQs"><a href="#FAQs" class="headerlink" title="FAQs"></a>FAQs</h2><p>Our client had asked us to include an FAQ section within the website for ease of use of all users - from admins to users. The FAQs also needed to be editable by admins only. In previous version, the FAQ section was a small question mark on our home page. With recent development, this can be accessed from the menu bar and from the user home page for all users.</p>
+<img src="/2021/group7/blog/2022/03/14/w13-14/faq.png" class="">
 
-<h2 id="Equipment-Table"><a href="#Equipment-Table" class="headerlink" title="Equipment Table"></a>Equipment Table</h2><p>This led us to start working on the equipment section of the kit. After the equipment table was configured in the database, equipment found at the hospital was displayed through a table. We chose to use a table as it provides a clear view of the equipment stored at each hospital, whilst also providing admins with a suitable way to manage equipment as a whole rather than individually, especially for the mass editing of potential equipment.</p>
-<img src="/2021/group7/blog/2022/01/14/w5/table.png" class="">
+<p>Here is our menu with the improved colour scheme:</p>
+<img src="/2021/group7/blog/2022/03/14/w13-14/menu.png" class="">
+
+<h2 id="Refactoring-Code"><a href="#Refactoring-Code" class="headerlink" title="Refactoring Code"></a>Refactoring Code</h2><p>As a team, we felt as if this was the best time to start refactoring code. Interaction between the client and server could have been tidier, and with deployment being a next step, it was crucial we could navigate through our code to fix bugs and ensure smooth deployment. We used environment variables with React in order to subsitute all calling to the backend in one place. We also tidied up our axios functions and created more components to be reused throughout the solution. This was also a great time to plan the documentation of our code, and implementing user guides as desired by our client.</p>
+<h2 id="Deployment"><a href="#Deployment" class="headerlink" title="Deployment"></a>Deployment</h2><p>To deploy our code, we decided to use an Azure VM with Ubuntu. Having a client and server running on two different ports, deploying was not as straightforward as planned, and we now need to find a way that deployment can occur on one server to ease cost on hosting.</p>
+
                 </section>
 
                 
@@ -113,17 +115,17 @@
 
             
             <nav class="dis_flex al_post_nav">
-                <a class="al_post_nav_item dis_flex_acenter" href="/2021/group7/blog/2022/01/31/w7-8/">
+                <a class="al_post_nav_item dis_flex_acenter" href="/2021/group7/blog/2022/03/27/w15-16/">
                     
                         <svg class="al_arrow">
                             <use xmlns="http://www.w3.org/2000/svg" xlink:href="/assets/svg_icons.svg#svg-arrow-left"></use>
                         </svg>
-                        <span class="al_text_ellipsis al_post_nav_desc">Week 7-8: More User Groups and Sharing</span>
+                        <span class="al_text_ellipsis al_post_nav_desc">Weeks 15 and 16: Deployment, Testing, Debugging and Documentation</span>
                     
                 </a>
-                <a class="al_post_nav_item dis_flex_acenter" href="/2021/group7/blog/2021/11/30/w3/">
+                <a class="al_post_nav_item dis_flex_acenter" href="/2021/group7/blog/2022/02/28/w11-12/">
                     
-                        <span class="al_text_ellipsis al_post_nav_desc">Weeks 3 and 4: Getting started with the Frontend</span>
+                        <span class="al_text_ellipsis al_post_nav_desc">Weeks 11-12: Report Viewing System and Issue System</span>
                         <svg class="al_arrow">
                             <use xmlns="http://www.w3.org/2000/svg" xlink:href="/assets/svg_icons.svg#svg-arrow-right"></use>
                         </svg>

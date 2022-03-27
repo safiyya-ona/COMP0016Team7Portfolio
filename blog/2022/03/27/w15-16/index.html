@@ -2,7 +2,7 @@
 <!DOCTYPE html>
 <html lang="en">
     <head>
-        <title>Week 5-6: Implementing Frontend and Backend </title>
+        <title>Weeks 15 and 16: Deployment, Testing, Debugging and Documentation</title>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=2.0">
 <link rel="stylesheet" href="/2021/group7/blog/css/style.css">
@@ -74,11 +74,11 @@
             <article class="al_article">
                 <header>
                     <h1 class="al_page_title">
-                        Week 5-6: Implementing Frontend and Backend 
+                        Weeks 15 and 16: Deployment, Testing, Debugging and Documentation
                     </h1>
                     <div class="al_page_info dis_flex">
                         <div class="al_page_content_info">
-                            Fri January 14, 2022 02:08 PM
+                            Sun March 27, 2022 11:00 PM
                         </div>
 
                         
@@ -90,19 +90,19 @@
 
                 
                     <div class="al_page_content_outline">
-                        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#Login-Page"><span class="toc-text">Login Page</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Home-Page"><span class="toc-text">Home Page</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Equipment-Table"><span class="toc-text">Equipment Table</span></a></li></ol>
+                        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#Deployment-continued"><span class="toc-text">Deployment continued</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Testing-and-Debugging"><span class="toc-text">Testing and Debugging</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Documentation"><span class="toc-text">Documentation</span></a></li></ol>
                     </div>
                 
 
                 
                 <section id="post-body">
-                    <h2 id="Login-Page"><a href="#Login-Page" class="headerlink" title="Login Page"></a>Login Page</h2><p>In Week 5 and the Christmas break, we started to implement the login system for the website. Here we made user groups for the clinical staff, and log in pages for them as well as the hospital and trust admins. Implementing the log in at this stage was necessary to build upon our app and to manage what certain users of the kit could use. After logging in, the user was taking to the home page with various buttons and icons to showcase the different pages to navigate towards. </p>
-<img src="/2021/group7/blog/2022/01/14/w5/login.png" class="">
-<h2 id="Home-Page"><a href="#Home-Page" class="headerlink" title="Home Page"></a>Home Page</h2><p>To implement the user groups, the database was also developed. Having a central database allows multiple logins to be stored in one place, reducing the need to create individual systems across trusts and making the program more extendable. </p>
-<img src="/2021/group7/blog/2022/01/14/w5/homepage.png" class="">
+                    <h2 id="Deployment-continued"><a href="#Deployment-continued" class="headerlink" title="Deployment continued"></a>Deployment continued</h2><p>As mentioned in the previous blog post, we have been running our backend and frontend on two different servers with two different repositories. This meant that in order to have good communication between the two servers, two virtual machines would have needed to be created with the previous architecture. After more research and coming to learn that Spring Boot can host static files, we decided to combine the two sides together and host the React app within Spring Boot.</p>
+<p>After doing this, we were met with the problem of routing. We were advised to use HashRouter from React Router, however this is not good practise for websites. We decided to stick with using BrowserRouter for more user-friendly urls. This proved difficult, as the frontend pages were not easily found. After coding an error catcher to redirect our pages to the currect frontend router, we were left with a working application on one server, following the desired routes correctly. Our website is now accessible on at <a href="http://13.87.78.62/" title="" target="">Clinical QR Kit</a>.</p>
+<h2 id="Testing-and-Debugging"><a href="#Testing-and-Debugging" class="headerlink" title="Testing and Debugging"></a>Testing and Debugging</h2><p>After deploying, we could extend our testing to both local and live testing. We decided to implement functional, unit, integration and responsive design testing with our code.</p>
+<p>Unit testing was mainly done for the backend. Here, we have been using JUnit for almost all functions and all controllers. Such tests are useful as we have fixed problems such as improper cascade mapping. Using Maven as our package manager also greatly aided our testing - each time we packaged our code, the tests were run, helping us ensure the code worked as expected before deploying the newest version to the virtual machine.</p>
+<p>For the frontend, we used functional and responsive design testing. Functional testing was performed by asking for test users, including our client, for general feedback and to improve on our functionalities. An example bug fix that we found through testing was our search table function - using a library, it had its own function that did not perform well with what we wanted. Testing helped us ensure this functionality was working correctly. Responsive design was performed as the use of mobile devices is key for our requirements and users -  we needed to ensure that our equipment page worked well on these devices.</p>
+<h2 id="Documentation"><a href="#Documentation" class="headerlink" title="Documentation"></a>Documentation</h2><p>As mentioned in our previous blog, refactoring the code also led us to document the code. Here we used JavaDoc to explicitly show the coding functionality. We also aim to do this for our frontend code.</p>
 
-<h2 id="Equipment-Table"><a href="#Equipment-Table" class="headerlink" title="Equipment Table"></a>Equipment Table</h2><p>This led us to start working on the equipment section of the kit. After the equipment table was configured in the database, equipment found at the hospital was displayed through a table. We chose to use a table as it provides a clear view of the equipment stored at each hospital, whilst also providing admins with a suitable way to manage equipment as a whole rather than individually, especially for the mass editing of potential equipment.</p>
-<img src="/2021/group7/blog/2022/01/14/w5/table.png" class="">
                 </section>
 
                 
@@ -113,17 +113,12 @@
 
             
             <nav class="dis_flex al_post_nav">
-                <a class="al_post_nav_item dis_flex_acenter" href="/2021/group7/blog/2022/01/31/w7-8/">
-                    
-                        <svg class="al_arrow">
-                            <use xmlns="http://www.w3.org/2000/svg" xlink:href="/assets/svg_icons.svg#svg-arrow-left"></use>
-                        </svg>
-                        <span class="al_text_ellipsis al_post_nav_desc">Week 7-8: More User Groups and Sharing</span>
+                <a class="al_post_nav_item dis_flex_acenter" href="/2021/group7/blog/">
                     
                 </a>
-                <a class="al_post_nav_item dis_flex_acenter" href="/2021/group7/blog/2021/11/30/w3/">
+                <a class="al_post_nav_item dis_flex_acenter" href="/2021/group7/blog/2022/03/14/w13-14/">
                     
-                        <span class="al_text_ellipsis al_post_nav_desc">Weeks 3 and 4: Getting started with the Frontend</span>
+                        <span class="al_text_ellipsis al_post_nav_desc">Week 13-14: FAQs, Refactoring and Deployment</span>
                         <svg class="al_arrow">
                             <use xmlns="http://www.w3.org/2000/svg" xlink:href="/assets/svg_icons.svg#svg-arrow-right"></use>
                         </svg>
