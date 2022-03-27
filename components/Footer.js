@@ -37,6 +37,7 @@ class Footer extends HTMLElement {
                 <ul>
                   <li><a href="testing.html">Testing</a></li>
                   <li><a href="evaluation.html">Evaluation</a></li>
+                  <li><a href="appendices.html">Appendices</a></li>
                 </ul>
               </div>
             </div>

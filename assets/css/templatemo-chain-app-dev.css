@@ -2370,3 +2370,7 @@ responsive
   font-size: 12px;
   line-height: 1.42857;
 }
+.beyond-background {
+  position: relative;
+  z-index: 1;
+}

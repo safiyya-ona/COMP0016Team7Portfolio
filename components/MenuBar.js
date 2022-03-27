@@ -80,7 +80,7 @@ class MenuBar extends HTMLElement {
                             </li>
                             <li>
                                 <a class="dropdown-item scroll-to-section"  href="requirements.html#gathering">
-                                    Requirements Gathering
+                                    User Interviews
                                 </a>
                             </li>
                             <li>
@@ -299,9 +299,44 @@ class MenuBar extends HTMLElement {
                             </li>
                         </ul>
                     </li>
-                    <li class="nav-item">
-                        <button type="button" class="btn btn-light btn-circle"><a href="blog/index.html"><i class="fa fa-blog"></i></a>
-                        </button>
+                    <li class="nav-item dropdown">
+                        <a
+                            class="nav-link dropdown-toggle"
+                            href="appendices.html"
+                            id="navbarDropdown"
+                            role="button"
+                            
+                            aria-expanded="false"
+                        >
+                            Appendices
+                        </a>
+                        <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                            <li>
+                                <a class="dropdown-item scroll-to-section"  href="appendices.html#user">
+                                    User Manual
+                                </a>
+                            </li>
+                            <li>
+                                <a class="dropdown-item scroll-to-section"  href="appendices.html#deployment">
+                                    Deployment Manual
+                                </a>
+                            </li>
+                            <li>
+                                <a class="dropdown-item scroll-to-section"  href="appendices.html#legal">
+                                    Legal Issues and Processes
+                                </a>
+                            </li>
+                            <li>
+                                <a class="dropdown-item scroll-to-section"  href="appendices.html#blog">
+                                    Development Blog
+                                </a>
+                            </li>
+                            <li>
+                                <a class="dropdown-item scroll-to-section"  href="appendices.html#videos">
+                                    Monthly Videos
+                                </a>
+                            </li>
+                        </ul>
                     </li>
                 </ul>
             </div>
