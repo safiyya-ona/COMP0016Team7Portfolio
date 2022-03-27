@@ -1725,7 +1725,7 @@ PopUp
 
 .btn {
   padding: 10px 20px;
-  background: #4b8ef1;
+  /* background: #4b8ef1; */
   color: #fff;
   transition: all .3s;
 }
@@ -2359,4 +2359,14 @@ responsive
   top: 50%;
   transform: translateY(-50%);
   z-index: 0;
+}
+
+.btn-circle {
+  width: 30px;
+  height: 30px;
+  padding: 6px 0px;
+  border-radius: 15px;
+  text-align: center;
+  font-size: 12px;
+  line-height: 1.42857;
 }

@@ -3,7 +3,6 @@ class MenuBar extends HTMLElement {
         super();
     }
     connectedCallback() {
-        // this.innerHTML = menubarHTML.toString();
         this.innerHTML = `<nav class="nav navbar sticky-top navbar-expand-lg navbar-light bg-light fixed-top wow slideInDown" id="mainNav">
         <div class="container">
             <a class="navbar-brand" href="index.html">
@@ -299,6 +298,10 @@ class MenuBar extends HTMLElement {
                                 </a>
                             </li>
                         </ul>
+                    </li>
+                    <li class="nav-item">
+                        <button type="button" class="btn btn-light btn-circle"><a href="blog/index.html"><i class="fa fa-blog"></i></a>
+                        </button>
                     </li>
                 </ul>
             </div>
