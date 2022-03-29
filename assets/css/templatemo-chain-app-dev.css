@@ -131,7 +131,7 @@ ul {
 }
 
 p {
-  font-size: 15px;
+  font-size: 20px;
   line-height: 30px;
   font-weight: 300;
   color: #7a7878;
@@ -2370,13 +2370,17 @@ responsive
   font-size: 12px;
   line-height: 1.42857;
 }
-.beyond-background {
+.beyond-background , pre{
   position: relative;
   z-index: 1;
 }
 
-.accordion-body ul li {
+.col-lg-10 ul li {
   padding: auto;
-  margin: auto;
+  margin: 5px;
   list-style: circle;
+}
+code[class*="language-"], pre[class*="language-"] {
+  white-space: pre-wrap !important; 
+  word-break: break-word !important;
 }

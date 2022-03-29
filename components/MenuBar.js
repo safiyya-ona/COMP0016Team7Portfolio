@@ -210,13 +210,13 @@ class MenuBar extends HTMLElement {
                                 </a>
                             </li>
                             <li>
-                                <a class="dropdown-item scroll-to-section"  href="implementation.html#users">
-                                    User Types
+                                <a class="dropdown-item scroll-to-section"  href="implementation.html#equipment">
+                                    Equipment Features
                                 </a>
                             </li>
                             <li>
-                                <a class="dropdown-item scroll-to-section"  href="implementation.html#equipment">
-                                    Equipment Management
+                                <a class="dropdown-item scroll-to-section"  href="implementation.html#datatables">
+                                    Data Tables
                                 </a>
                             </li>
                             <li>

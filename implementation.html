@@ -30,6 +30,8 @@ https://templatemo.com/tm-570-chain-app-dev
     <link rel="stylesheet" href="assets/css/templatemo-chain-app-dev.css">
     <link rel="stylesheet" href="assets/css/animated.css">
     <link rel="stylesheet" href="assets/css/owl.css">
+    <link rel="stylesheet" href="assets/css/prism.css">
+
 
     <!-- HTML components -->
     <script src="components/MenuBar.js" type="text/javascript" defer ></script>
@@ -59,6 +61,7 @@ https://templatemo.com/tm-570-chain-app-dev
 
   <div class="page-banner wow fadeIn text-center" id="top" data-wow-duration="1s" data-wow-delay="0.5s">
     <h1>Implementation</h1>
+
   </div>
 
   <div id="login" class="services section">
@@ -68,52 +71,291 @@ https://templatemo.com/tm-570-chain-app-dev
           <div class="section-heading  wow fadeInDown" data-wow-duration="1s" data-wow-delay="0.5s">
             <h4><em>Login</em> System</h4>
             <img src="assets/images/heading-line-dec.png" alt="">
-            <p>The Gantt Chart below illustrates the Project Timeline and Project Management</p>
           </div>
         </div>
       </div>
     </div>
     <div class="container">
-      <div class="row">
-        <iframe></iframe>
+      <div class="row ">
+        <div class="col-lg-10 offset-lg-1 beyond-background justify-content-center">
+          <div class="d-flex justify-content-center"><img class="w-50" src="assets/implementation/login1.png" alt=""></div><br>
+          <p>When a user has selected his/her trust and hospital as well as entered both username and password, by clicking the login button our webapp will call login() and redirect to the page which the user is trying accessing to or display an error message depended on the verification result.</p>
+          <br>
+          <pre><code class="language-javascript">async function login(e) {
+            e.preventDefault();
+            if (trustId === "-1" || hospitalId === "-1" || username === "" || password === ""){
+              return;
+            }
+          
+            GetData.login(hospitalId, username, password).then((resultArray) => {
+              if (resultArray.length > 0) {
+                const expireTime = new Date().setUTCHours(new Date().getUTCHours() + 3);
+                //3 hours session
+                setLevel(resultArray[0]);
+                setHospitalID(resultArray[1]);
+                setTrustID(resultArray[2]);
+                setUserName(username);
+                setName(resultArray[3]);
+                setExpireTime(expireTime.valueOf());
+                setPassword(password);
+          
+                const path = getRedirection();
+                if(path === ""){
+                  history.push("/home");
+                }else{
+                  setRedirection("");
+                  history.push(path);
+                }
+              } else {
+                setMessage("Wrong Username or Password");
+                setFormUserName("");
+                setFormPassword("");
+              }
+            });
+          }</code></pre>
+          <p class="text-center">The code above is executed when the login is pressed</p>
+          <br>
+          <p>This GetData’s login() function will use Axios to make a http post request to our backend with hospital id, username and password in form data.
+          </p><br>
+          <p>Our backend will first see whether the entered username exists in the given hospital before checking whether the given password matches with the password found in database. If they all match, then our backend would pass back an array of user’s trust id, hospital id, it’s access level and its name.</p><br>
+          <div class="d-flex justify-content-center">
+            <img class="w-50" src="assets/implementation/accesslevel.png" alt="">
+          </div>
+          <p>Our frontend will store all these information including username, password, hospital id and so on into local storage using redux-persist.</p><br>
+          <p>Also, user’s login status will be expired after 3 hours. When a user is accessing a page while the user’s login status is expired or the user has no right to access it, the user will be redirected to login page and has to login again. This is done by using a component called GuardedRoute to route almost all pages except login page within the router.</p><br>
+          <!-- code -->
+            <pre><code class="lang-javascript text-start">const GuardedRoute = ({path, component, render, requireLevel}) => {
+
+              const location = useLocation();
+              /**
+               * user level from user status
+               * @type {number}
+               */
+          
+              const level = parseInt(getLevel());
+              if (checkLogIn()){
+                  if(level < requireLevel){
+                      return(<Redirect to="/home"/>);
+                  }
+                  if (component === null){
+                      return(<Route exact path={path} render={render}/>);
+                  } else{
+                      return(<Route exact path={path}>{component}</Route>);
+                  }
+              } else{
+                  setRedirection(location.pathname);
+                  return (<Redirect to="/login"/>);
+              }
+          
+          }</code></pre>
+          <p>GuardedRoute is our custom component that has the same effect as Route from react-router-dom but it will check users’ login status before routing them to corresponding website. Login status is checked by checkLogIn(), it will return false if the login status in local storage is in default state (e.g. -1 for hospital id, set during initialisation) or the session has expired (by comparing current time and expire time), otherwise true. A prop parameter called requiredLevel is passed to GuardedRoute indicating the minimum level required for this user group to access this page. For instance, if the requiredLevel is 2, only the user with level 1 cannot access this page.</p>
+          <br>
+          <h5>Users</h5>
+          <!-- image -->
+          <p>The relationships of login system models in ClinicalKitQR system are implemented as above. Trusts and hospitals have their own unique identifiers (long type numbers) as primary key whereas user groups have a composite primary key formed by hospital’s id and its username. Please note that a user group’s username must be unique within a hospital, but its display name can be identical to the others.</p>
+          <br>
+          <div class="d-flex justify-content-center">
+            <img class="w-50" src="assets/implementation/usergrouperd.png" alt="">
+          </div><br>
+          <p>User groups are divided into three types, trust admins, hospital admins and normal users.</p><br>
+          <div class="d-flex justify-content-center"><img class="w-50" src="assets/implementation/usergrouptable.png" alt=""></div><br>
+        </div>
       </div>
     </div>
   </div>
 
-  <div id="users" class="second-section section">
+
+  <div id="equipment" class="second-section section">
     <div class="container">
       <div class="row">
         <div class="col-lg-8 offset-lg-2">
           <div class="section-heading  wow fadeInDown" data-wow-duration="1s" data-wow-delay="0.5s">
-            <h4>Users</h4>
+            <h4><em>Equipment</em></h4>
             <img src="assets/images/heading-line-dec.png" alt="">
-            <p>The Gantt Chart below illustrates the Project Timeline and Project Management</p>
+            
           </div>
         </div>
       </div>
     </div>
     <div class="container">
       <div class="row">
-        <iframe></iframe>
+        <div class="col-lg-10 offset-lg-1 beyond-background">
+          <div class="d-flex justify-content-center">
+            <img src="assets/implementation/eqerd.png" class="w-50" alt="">
+          </div>
+          <p>Equipment model contains all data shown on the equipment viewing page for user, keywords used in search system to locate specific equipment, and issue, viewing list for issue table and equipment report generation.</p>
+          <br><br>
+          <p>The primary key equipmentId is a Long Type number generated by a sequence generator starting from 1, it’s used for user to locate the specific equipment in search system. HospitalId could identify which hospital the equipment belongs to. Search name is like name but convert to lower case to used in search system. Name, content, type, category, model are the equipment data shown to user and edited by admin.
+          </p>
+          <br>
+          <br>
+          <p>Model is manufacturer’s equipment model and belong to a manufacturer, a manufacturer has a nonempty model list to store all models created by admin, each model has a random UUID, also manufacturer can be created by admin, the name is the identifier. So, manufacturer has a one-to-many relationship to models.
+          </p>
+          <br>
+          <div class="d-flex justify-content-center">
+            <img src="assets/implementation/image009.png" class="w-50" alt="">
+          </div>
+          <p>Equipment object also has list of reference to issue and viewingList, issue is reported by the normal user and has a Long Type number issueId starting from 1. Viewing has a random UUID. Issue and viewing both have a date to indicate the creation time and a reference to usergroup to indicate who create them, and a unique corresponding equipment. Equipment has a one-to-many relationship with issue and viewing.</p><br>
+          <div class="d-flex justify-content-center">
+            <img src="" alt="">
+          </div>
+        </div>
       </div>
     </div>
   </div>
 
-  <div id="equipment" class="services section">
+  <div id="qr" class="pricing-tables">
     <div class="container">
       <div class="row">
         <div class="col-lg-8 offset-lg-2">
           <div class="section-heading  wow fadeInDown" data-wow-duration="1s" data-wow-delay="0.5s">
-            <h4><em>Equipment</em> Management <em>Diagrams</em></h4>
+            <h4><em>Equipment QR Code</em> Generation </h4>
             <img src="assets/images/heading-line-dec.png" alt="">
-            <p>The Gantt Chart below illustrates the Project Timeline and Project Management</p>
           </div>
         </div>
       </div>
     </div>
     <div class="container">
       <div class="row">
-        <iframe></iframe>
+        <div class="col-lg-10 offset-lg-1 beyond-background">
+          <p>The equipment QR code generation is done at backend. When the QR code link is clicked at the frontend, a http get request is sent by the code below.
+          </p>
+          <pre><code class="language-javascript"> &lt img src={process.env.REACT_APP_BACKEND_URL + "equipment/qrcode/id=" + id} alt={id} /></code></pre>
+          <br>
+          <p>process.env.REACT_APP_BACKEND_URL is prefix URL which all backend URL have and thus must be added in the src of <img>. This will automatically make a http get request to backend to get the QR code of the corresponding equipment.</p>
+          <br>
+          <pre><code class="language-java">@GetMapping(value = "/qrcode/id={id}" ,produces = MediaType.IMAGE_PNG_VALUE)
+            public ResponseEntity<BufferedImage> getEquipmentQRCode(@PathVariable long id){
+                try {
+                    return ResponseEntity.ok(service.generateQRCodeImage(id));
+                }catch (Exception e){
+                    return null;
+                }
+            }</code></pre>
+          <p>When backend receives this request, it will dynamically generate the QR code of the website and return it to the frontend. The reason why it is generated dynamically is because its details such as name, make can be changed. When they are changed, we need to reflect it to the QR code image, thus we decided to generate it dynamically.
+          </p>
+          <div class="d-flex justify-content-center">
+            <img src="assets/implementation/qrexample.png" class="w-25" alt="">
+          </div>
+          <p>QR code is generated by ZXing library’s QRCodeWriter to encode the web address of viewing equipment at the frontend into a QR code before using graphics to draw all the texts on the image above.
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div id="search" class="pricing-tables">
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-8 offset-lg-2">
+          <div class="section-heading  wow fadeInDown" data-wow-duration="1s" data-wow-delay="0.5s">
+            <h4><em>Search</em> Equipment</h4>
+            <img src="assets/images/heading-line-dec.png" alt="">
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-10 offset-lg-1 beyond-background">
+          <p>For our search function, we allow the user to search with the following options:
+          </p>
+          <ul>
+            <li><p>Patient Demographic: Adult, Child or Neonatal</p></li>
+            <li><p>Clinical System: can be respiratory or surgery etc.</p></li>
+            <li><p>Manufacturer: the make of the equipment</p></li>
+            <li><p>Model: the equipment model</p></li>
+          </ul>
+          <br>
+          <p>Our patient demographic and clinical system are fixed constant. Manufacturer and model can be created by the admins, in Search Equipment page when getting manufacturer options, getAllManufacturers() is called to get the names of all manufacturers to make a http post request to get all manufacturers in ascending order.
+          </p>
+          <pre><code class="language-java">@Query("select m from Manufacturer m order by m.manufacturerName ASC ")
+            List<Manufacturer> getAll();</code></pre>
+          <br>
+          <p>The following code performs the search by trust and hospital:</p>
+          <pre><code class="language-java">@Query("select e from Equipment e where e.hospitalId.hospitalId=?1 and (?2 = '' or e.type=?2) and (?3 = '' or e.category=?3)" +
+            " and (?4 = '' or e.searchName like %?4% or e.model.modelSearchName like %?4%) and " +
+            "(?5 = '' or e.model.manufacturer.manufacturerName = ?5) and (?6 = '' or e.model.modelName = ?6)")
+    List<Equipment> searchByHospital(long id,String type, String category,String text,String manufacturer,String model);
+    
+    @Query("select e from Equipment e where e.hospitalId.trust.trustId=?1 and (?2 = '' or e.type=?2) and (?3 = '' or e.category=?3)" +
+            " and (?4 = '' or e.searchName like %?4% or e.model.modelSearchName like %?4%) and " +
+            "(?5 = '' or e.model.manufacturer.manufacturerName = ?5) and (?6 = '' or e.model.modelName = ?6)")
+    List<Equipment> searchByTrust(long id,String type, String category,String text,String manufacturer,String model);</code></pre>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div id="datatables" class="services section">
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-8 offset-lg-2">
+          <div class="section-heading  wow fadeInDown" data-wow-duration="1s" data-wow-delay="0.5s">
+            <h4>Data <em>Tables</em></h4>
+            <img src="assets/images/heading-line-dec.png" alt="">
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-10 offset-lg-1">
+          <div class="d-flex justify-content-center">
+            <img class="w-50" src="assets/implementation/datatables.png" alt="">
+          </div>
+          <br>
+          <p>For the following sections in our frontend webapp we have used Material-UI(MUI)’s Table component to display data:
+          </p>
+          <ul>
+            <li><p>Equipment</p></li>
+            <li><p>Hospitals</p></li>
+            <li><p>User Groups</p></li>
+            <li><p>Contact Book</p></li>
+            <li><p>Reported Issues</p></li>
+          </ul>
+          <br>
+          <p>This is done by every time we open a table, in the useEffect() function it first set columns for the table before using get functions from GetData.js to make a http get request to our backend to get the corresponding data. Our backend would return a list of data objects to our frontend (see example below).
+          </p>
+          <pre><code class="language-java">
+            @GetMapping(value = "/hospitalId={id}")
+public List<Equipment> getEquipmentsInHospital(@PathVariable long id){
+    return service.getAllByHospital(id);
+}
+          </code></pre>
+          <br>
+          <p>Each object will become a JSON string with all attributes of this object that are not labelled ‘JsonIgnore’ in our backend code. Our frontend would automatically parse the returned string as a JSON object, and we are able to iterate through the list to fetch attributes needed from each object before putting it as a row in the table.
+          </p>
+          <pre><code class="language-javascript">function setRowData(data) {
+            const rowsData = [];
+            for (let i = 0; i &lt data.length; i++) {
+              const equipment = data[i];
+              rowsData.push({
+                name: equipment.name,
+                id: equipment.equipmentId,
+                hospital: equipment.hospitalId.hospitalName,
+                qr: &lt a href={QRURL + equipment.equipmentId}>QR code&lt /a>,
+                operation: (
+                    &lt>
+                      &lta
+                          href={viewURL + equipment.equipmentId}
+                          style={{ textDecoration: "none", marginRight: '8%'}}
+                      >
+                        View
+                      &lt/a>
+                      &lt a
+                        href={editURL + equipment.equipmentId}
+                        style={{ textDecoration: "none" }}
+                      >
+                        Edit
+                      &lt /a>
+                    &lt />
+                ),
+              });
+            }
+            setRows(rowsData);
+          }</code></pre>
+        </div>
       </div>
     </div>
   </div>
@@ -125,14 +367,109 @@ https://templatemo.com/tm-570-chain-app-dev
           <div class="section-heading  wow fadeInDown" data-wow-duration="1s" data-wow-delay="0.5s">
             <h4><em>Sharing</em> System</h4>
             <img src="assets/images/heading-line-dec.png" alt="">
-            <p>The Gantt Chart below illustrates the Project Timeline and Project Management</p>
           </div>
         </div>
       </div>
     </div>
     <div class="container">
       <div class="row">
-        <iframe></iframe>
+        <div class="col-lg-10 offset-lg-1 beyond-background">
+          <p>Our implementation for sharing system consists of four main parts: looking of our system, view sharing, send sharing and receive sharing. Only admins (hospital admin or trust admin) can use this system.
+          </p>
+          <br>
+          <h5>Appearance</h5>
+
+          <p>For the appearance of our system, we wanted to make it look similar to outlook. Thus, we mainly used List (and some related components such as ListItem) and Divider component from MUI to implement the following features:
+          </p>
+          <ul>
+            <li><p>The side bar of inbox (with Inbox and Sent buttons)</p></li>
+            <li><p>The list of sharing received or sent</p></li>
+            <li><p>The list of equipment inside the sharing content</p></li>
+          </ul>
+          <br>
+          <h5>Receiving Sharings (Sharing List)</h5>
+          <p>When checking all sharing received by an admin or sent by this admin, the hospital id and the username of this admin is passed to getSentSharings() or getReceivedSharings() in GetData.js to make a http post request to our backend to get corresponding sharing.
+
+          </p>
+          <p>Our backend will use the following JPQL query to fetch a list of sharing which either the sender or the receiver is the user which are passed to the backend.
+
+          </p>
+          <pre><code class="language-java">
+@Query("select m from Mail m join m.receiver r where r.hospitalId.hospitalId = ?1 and r.username = ?2 order by m.time DESC")
+List<Mail> getAllReceived(long id,String username);
+
+@Query("select m from Mail m where m.senderHospitalId = ?1 and m.senderUsername = ?2 and m.receiver is null order by m.time DESC")
+List<Mail> getAllSent(long id,String username);
+          </code></pre>
+          <br>
+          <p>These sharing along with the information of the sender (which are user group objects, used to display roles and names of senders in the list) would be returned to frontend and frontend will use List component mentioned above to create a list of sharing which can be clicked to display the content inside the sharing.</p>
+          <br>
+
+          <div class="d-flex justify-content-center"><img class="w-50" src="assets/implementation/image003.png" alt=""></div>
+          <p class="text-center">How the list of sharings look</p>
+          <br>
+
+          <h5>Sending Sharings</h5>
+          <p>To send a sharing, following operations needs to be done before sending:
+          </p>
+          <ul>
+            <li><p>Choose equipment which are going to be shared</p></li>
+            <li><p>Choose admins who are going to be shared with</p></li>
+            <li><p>Write the title of this sharing (optional)</p></li>
+            <li><p>Write the description of this sharing (optional)</p></li>
+          </ul>
+          <br>
+          <p> After performing the above actions and clicked the send button, send() will be called in the frontend. This function will gather the selections of equipment and user groups by creating a list of equipment ids and a list of pairs of hospital ids and usernames (which are the composite primary key for usergroup).
+          </p>
+          <pre><code class="language-javascript">const sendingEquipmentIds = decodeEquipmentSelection(equipmentStore.getState());
+            const sendingUsergroups = decodeUsergroupSelection(usergroupStore.getState());
+            const time = new Date().toUTCString();
+            Uploader.sendSharings(getHospitalId(),getUserName(),sendingEquipmentIds,sendingUsergroups,title,description,time).then((data)=>{
+                if(data){
+                    setMessage("Send Successful");
+                    setTitle("");
+                    setDescription("");
+                    usergroupStore.dispatch(storeSelection([]));
+                    equipmentStore.dispatch(storeSelection([]));
+                }else{
+                    setMessage("Send unsuccessful, please try again");
+                }
+            });</code></pre>
+          <p class="text-center">Part of the send function</p>
+          <br>
+          <p>It will also record the current UTC time as a string and use sendSharings() from Uploader.js to make a http post request to the backend with information shown in the code above.
+          </p>
+          <div class="d-flex justify-content-center">
+            <img src="assets/implementation/image004.png" alt="">
+          </div><br>
+          <p>n backend, a mail object is uniquely identified by random UUID string. It has a one-to-one relationship with the receiver user group, but sender is not linked with the user group object. This is because if the sender user group object is deleted, we do not want the corresponding sharing to be deleted on other receivers’ inbox. Also, each mail only has one receiver so when one of receivers deleted the sharing, this will not affect any other receivers. Its sent time is recorded for ordering from latest to earliest when fetching.
+
+          </p>
+          <br>
+          <p>Sent equipment acts as a copy that records the version of equipment when the equipment is shared. This is for when an equipment is changed after the sharing is sent, this should not affect the shared version of this equipment.
+          </p>
+          <br>
+          <p>The form data which come along with the post request will be processed by send() in MailController at the backend, it will first check the sender, all receivers and all shared equipment exist or not before parsing the UTC time string passed from the frontend. Then it will iterate through the receiver list to create Mail object for each receiver. Each mail object will have different SentEquipment objects despite that the actual content of them are the same. At the end, a mail object with receiver as null will be saved, this will be a copy for the sender to check for what he/she sent.
+          </p>
+          <p>The reason why sent equipment is not shared by multiple mail is if a mail is deleted its sent equipment will also be deleted due to cascade and space saving.
+          </p>
+          <br>
+          <br>
+          <h5>View Sharing</h5>
+          <div class="d-flex justify-content-center"><img class="w-50" src="assets/implementation/image005.png" alt=""></div><br>
+          <p>For viewing a sharing, we have used MUI’s ButtonList component to provide both save and save all buttons at the same place. When the user clicked open button of one of the equipment. The user will not be taken to a regular equipment viewing page since the content of the equipment may be changed by then. Instead, they will be viewing a page based on the data at SentEquipment so they can have an idea on what they are saving into their database.
+          </p>
+          <p>When the user saves a SentEquipment, the data inside will be copied to a new Equipment object links to their hospital before saving it into the database. The SentEquipment object’s saved attribute will be updated to true in order to avoid user saving duplicates if he/she clicked save button multiple times.
+          </p>
+          <p>The sharing can be deleting by passing the id which is an UUID of the sharing to deleteMail() in DeleteData.js. It will make a http delete request that deletes the corresponding Mail object and SentEquipment objects inside.
+          </p>
+          <br>
+          <pre><code class="language-java">@Transactional
+            @Modifying
+            @Query("delete from Mail m where m.id = ?1")
+            void deleteByPK(String id);</code></pre>
+
+        </div>
       </div>
     </div>
   </div>
@@ -145,18 +482,84 @@ https://templatemo.com/tm-570-chain-app-dev
           <div class="section-heading  wow fadeInDown" data-wow-duration="1s" data-wow-delay="0.5s">
             <h4><em>Equipment Viewing Report</em> System</h4>
             <img src="assets/images/heading-line-dec.png" alt="">
-            <p>The following section describes the Equipment Viewings Report System</p>
           </div>
         </div>
       </div>
     </div>
     <div class="container beyond-background">
       <div class="row ">
-        <div class="col-lg-10 offset-lg-1 text-center">
+        <div class="col-lg-10 offset-lg-1">
           <p>Each time a non-admin user views an equipment, a viewing is added to the database to account for this. These can be viewed in bar chart or pie chart form by admins of that equipment. This features uses the ChartJS library. It integrated well with React to display information on equipment.</p>
           <img src="assets/implementation/report1.png">
           <p>Admin users first click the “Select Equipment” button which opens up a modal. This modal has a table similar to the equipment table, however users select one equipment that they would like to view the viewing for.</p>
-          <img src="assets/implementation/reportEqTable.png" class="w-50 p-3" alt="">
+          <br>
+          <div class="d-flex justify-content-center">
+            <img src="assets/implementation/reportEqTable.png" class="w-50" alt="">
+          </div>
+          <br>
+          <p>After selecting the equipment, the charts can be shown. 
+          </p>
+          <div class="d-flex justify-content-center">
+            <img src="assets/implementation/piechart.png" class="w-25" alt="">
+          </div>
+          <br>
+          <p>Users may also input a date range to retrieve viewings from. Both Start Dates and End Dates are optional. The “X” buttons are used to clear the dates if no longer needed.
+          </p>
+          <div class="d-flex justify-content-center">
+            <img src="assets/implementation/daterange.png" class="w-50" alt="">
+          </div> <br>
+          <p>The following code sets the graph data when either the dates or the equipment chosen changes. It uses axios to send a GET request the API. The graph data is then sent through props to the graph component.</p>
+          <pre><code class="language-javascript">
+            useEffect(() => {
+                // rerenders when dates or equipment selection changes
+                if (selectedEquipment.length === 0) {
+                  setGraphData({ ...emptyGraph });
+                }
+                if (selectedEquipment.length > 0) {
+                  GetData.getViewingsByEquipmentIdAndDateBetween(
+                    rows[selectedEquipment[0]].id,
+                    startDate,
+                    endDate
+                  ).then((data) => {
+                    setGraphData(createGraphData(rows[selectedEquipment[0]].name, data));
+                  });
+                }
+              }, [selectedEquipment, startDate, endDate]);</code></pre>
+              <br>
+          <p>Equipment viewings are managed on the backend. Each time the user fetches an equipment and their user type is a non-admin type, the counter for the viewing of the equipment is added to. The following occurs in the EquipmentController:</p>
+          <pre><code class="language-java">@PostMapping("/get")
+            public Equipment getById(@RequestParam("id") long id,@RequestParam("hospitalId") long hospitalId, @RequestParam("username")String username){
+                ...
+                Equipment equipment = service.get(id);
+                ...
+                if (equipment.getHospitalId().getHospitalId()==hospitalId){
+                    if (!group.getIsAdmin()) {
+                        // creates new viewing if the user is not an admin (therefore does not increment on editing equipment)
+                        viewingService.addNewView(equipment, LocalDate.now(),group);
+                    }
+                    return equipment;
+                }
+                ...
+            }</code></pre><br>
+            <p>The addNewView method increments the counter by one. When equipment data is fetched for a data range, this counter is totalled up for that date range.
+            </p>
+          <pre><code class="language-java">public void addNewView(Equipment equipment,LocalDate date,UserGroup group){
+            Viewing view = repository.getViewToUpdate(equipment.getEquipmentId(),date,group);
+            if (view!=null){
+                long views = view.getViewCounter();
+                long version = view.getVersion();
+                boolean done = false;
+                while (!done){
+                    try {
+                        repository.incrementCounter(view.getViewingId(),views+1L,version);
+                        done = true;
+                    }catch (OptimisticLockException oe){
+                        try {
+                            wait(100);
+                            //wait 100ms before retry
+                        }catch (Exception e){}
+                    }
+                }</code></pre>
         </div>
       </div>
     </div>
@@ -173,5 +576,6 @@ https://templatemo.com/tm-570-chain-app-dev
   <script src="assets/js/imagesloaded.js"></script>
   <script src="assets/js/popup.js"></script>
   <script src="assets/js/custom.js"></script>
+  <script src="assets/js/prism.js"></script>
 </body>
 </html>
