@@ -68,14 +68,16 @@ https://templatemo.com/tm-570-chain-app-dev
           <div class="section-heading  wow fadeInDown" data-wow-duration="1s" data-wow-delay="0.5s">
             <h4>System <em>Architecture</em></h4>
             <img src="assets/images/heading-line-dec.png" alt="">
-            <p>The Gantt Chart below illustrates the Project Timeline and Project Management</p>
+            <p>The System Architecture diagram gives an overview on the key components of the solution. We have our <em>Frontend</em> section, which uses React to serve the frontend and handle navigation to views. The <em>Backend</em> section utilises Spring Boot, running a Tomcat server and using a REST API to controller different requests and CRUD actions. The <em>Database</em> layer uses PostgresQL.</p>
           </div>
         </div>
       </div>
     </div>
     <div class="container">
       <div class="row">
-        <iframe></iframe>
+        <div class="col-lg-10 offset-lg-1">
+          <img src="assets/system/sysarch.png" class="beyond-background" alt="">
+        </div>
       </div>
     </div>
   </div>
@@ -87,52 +89,37 @@ https://templatemo.com/tm-570-chain-app-dev
           <div class="section-heading  wow fadeInDown" data-wow-duration="1s" data-wow-delay="0.5s">
             <h4>Site Map</h4>
             <img src="assets/images/heading-line-dec.png" alt="">
-            <p>The Gantt Chart below illustrates the Project Timeline and Project Management</p>
+            <p>Having created a web application, we have created a sitemap to show navigation across the site.</p>
           </div>
         </div>
       </div>
     </div>
     <div class="container">
       <div class="row">
-        <iframe></iframe>
-      </div>
-    </div>
-  </div>
-
-  <div id="classDiagrams" class="services section">
-    <div class="container">
-      <div class="row">
-        <div class="col-lg-8 offset-lg-2">
-          <div class="section-heading  wow fadeInDown" data-wow-duration="1s" data-wow-delay="0.5s">
-            <h4>Class <em>Diagrams</em></h4>
-            <img src="assets/images/heading-line-dec.png" alt="">
-            <p>The Gantt Chart below illustrates the Project Timeline and Project Management</p>
-          </div>
+        <div class="col-lg-10 offset-lg-1">
+          <img src="assets/system/sitemap.png" class="beyond-background" alt="">
         </div>
       </div>
     </div>
-    <div class="container">
-      <div class="row">
-        <iframe></iframe>
-      </div>
-    </div>
   </div>
 
-  <div id="dataStorage" class="second-section section">
+  <div id="dataStorage" class="services section">
     <div class="container">
       <div class="row">
         <div class="col-lg-8 offset-lg-2">
           <div class="section-heading  wow fadeInDown" data-wow-duration="1s" data-wow-delay="0.5s">
             <h4>Data Storage</h4>
             <img src="assets/images/heading-line-dec.png" alt="">
-            <p>The Gantt Chart below illustrates the Project Timeline and Project Management</p>
+            <p>As one of our requirements, we needed to create a database to manage the site, specifically the equipment and resources. Using PostgresQL, we used the following relationships shown in the Entity Relationship Diagram</p>
           </div>
         </div>
       </div>
     </div>
     <div class="container">
       <div class="row">
-        <iframe></iframe>
+        <div class="col-lg-10 offset-lg-1">
+          <img src="assets/system/erd.png" class="beyond-background" alt="">
+        </div>
       </div>
     </div>
   </div>
@@ -145,17 +132,49 @@ https://templatemo.com/tm-570-chain-app-dev
           <div class="section-heading  wow fadeInDown" data-wow-duration="1s" data-wow-delay="0.5s">
             <h4><em>Packages</em> and <em>API</em></h4>
             <img src="assets/images/heading-line-dec.png" alt="">
-            <p>The following list illustrates the MoSCoW requirements of our project</p>
           </div>
         </div>
       </div>
     </div>
     <div class="container">
       <div class="row">
-        <iframe></iframe>
+        <div class="col-lg-10 offset-lg-1">
+          <div class="row">
+            <div class="row row-cols-1 row-cols-md-3 g-4">
+              <div class="col">
+                <div class="card" style="width: 18rem;">
+                  <img src="assets/images/spring-boot-logo.png" class="card-img-top" alt="...">
+                  <div class="card-body">
+                    <h5 class="card-title">Spring Boot</h5>
+                    <p class="card-text">Website Backend and REST API</p>
+                  </div>
+                </div>
+              </div>
+              <div class="col">
+                <div class="card" style="width: 18rem;">
+                  <img src="assets/images/reactlogo.png" class="card-img-top" alt="...">
+                  <div class="card-body">
+                    <h5 class="card-title">React</h5>
+                    <p class="card-text">Frontend framework and web application</p>
+                  </div>
+                </div>
+              </div>
+              <div class="col">
+                <div class="card" style="width: 18rem;">
+                  <img src="assets/images/bootstrap-logo.svg" class="card-img-top" alt="...">
+                  <div class="card-body">
+                    <h5 class="card-title">Bootstrap</h5>
+                    <p class="card-text">Website styling and components</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
       </div>
     </div>
   </div>
+  
 
   <footer-component></footer-component>
 

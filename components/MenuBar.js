@@ -181,11 +181,6 @@ class MenuBar extends HTMLElement {
                                 </a>
                             </li>
                             <li>
-                                <a class="dropdown-item scroll-to-section"  href="system.html#classDiagrams">
-                                    Class Diagrams
-                                </a>
-                            </li>
-                            <li>
                                 <a class="dropdown-item scroll-to-section"  href="system.html#dataStorage">
                                     Data Storage
                                 </a>
