@@ -2374,3 +2374,9 @@ responsive
   position: relative;
   z-index: 1;
 }
+
+.accordion-body ul li {
+  padding: auto;
+  margin: auto;
+  list-style: circle;
+}
