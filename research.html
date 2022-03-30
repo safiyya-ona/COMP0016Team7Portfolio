@@ -74,7 +74,29 @@ https://templatemo.com/tm-570-chain-app-dev
     </div>
     <div class="container">
       <div class="row">
-        <iframe></iframe>
+        <div class="col-lg-10 offset-lg-1 beyond-background">
+          <h5>QR code Ordering System</h5>
+          <br>
+          <p>Flipdish is a digital ordering system which generates QR code for a restaurant. When QR code is scanned, the user will be brought to a customised site powered by Flipdish. After user entering the table number (or room numbers etc.), they can order the food available and checkout online [1].</p><br>
+          <p>From seeing the example use case of this system provided by the official site [2] and the process graph, we think the key features of this system are the follows:</p>
+          <ul>
+            <li><p>Having some indicative content are along with the generated QR code so the user knows how to use it.</p></li>
+            <li><p>Powering a custom site for the user to access after scanning the QR code</p></li>
+            <li><p>Allow the restaurant to fully customise their site</p></li>
+          </ul>
+          <br>
+          <p>We think these features are very helpful as it shows what a mature QR code related project should be like. With these features in mind, we decided that we will implement our system to:</p>
+          <ul>
+            <li><p>Have instructions and unique ids as well as some detail of the equipment in our generated QR code</p></li>
+            <li><p>Power our own website for the user to access after scanning the QR code</p></li>
+            <li><p>We will let admins to edit all the equipment education page and users such as nurses can only view those pages.</p></li>
+          </ul>
+          <br><br>
+          <h5>QR Code System for Inventory Management</h5>
+          <p>Another example project we found is related to inventory management. The system is called QR code generator, when the QR code is scanned the system will record where this is scanned, and the number of scanning. </p><br>
+          <p>One of the key features of this system is that it provides visual views of statistics to the user, this can be vertical or horizontal bar chart and percentage tables [3].</p><br>
+          <p>We think this feature is very interesting and can be fitted into our system. This is because although ClinicalKitQR is helpful for the nurses to have just-in-time learning, if there is an equipment which most nurses are unfamiliar with, it is better to have a group tutorial making sure they are familiar with this equipment than accessing the webpage every time when they use it. Therefore, we decided to implement a view report system which records the view of each equipment viewing page of all normal users (e.g., nurses, non-admins) and display it visually like in bar chart or pie chart.</p>
+        </div>
       </div>
     </div>
   </div>
@@ -92,7 +114,36 @@ https://templatemo.com/tm-570-chain-app-dev
     </div>
     <div class="container">
       <div class="row">
-        <iframe></iframe>
+        <div class="col-lg-10 offset-lg-1 beyond-background">
+          <h5>API</h5>
+          <p>At the start of the project, we decided to separate our frontend and backend. </p>
+          <p>There are a few common choices of API for our backend: REST, SOAP and RPC.</p><br>
+          <p>REST API is short for Representational State Transfer, an architectural style for building web services that interact via an HTTP protocol.[4] It supports GET, POST, DELETE and PUT http request to be send to the server. When returning HTTP response to the client, resources can be in many formats such as JSON or XML.</p><br>
+          <p>However, for SOAP, it only supports resources to be in XML format which is not as flexible as REST. For RPC, it only supports GET and POST request which is also less than what REST can request.</p><br>
+          <p>Since 83% [5] of the websites’ backend are based on REST API and the reasons we have mentioned above, we decided to pick a RESTful framework to implement our backend.</p><br>
+          <h5>Backend Framework and Languages</h5>
+          <p>By research we found that there are two main choices of backend framework, Spring boot and Django.</p><br>
+          <p>Spring Boot is a tool that develops web applications under Spring Framework, which is an open-source framework that is used for creating standalone applications that runs on Java virtual machine.[6] Its web application is usually developed in Java, but Kotlin and  Groovy are also supported.</p><br>
+          <p>Django is a high-level web framework which is also open source. It was created in 2003 and has been a very popular framework. Some well-known sites including Instagram and Mozilla uses Django as well. [7] Its web application can only be developed using Python.</p><br>
+          <p>When comparing Django to Spring Boot, Django has some unique advantages. Firstly, Django is more developer friendly. This is not only because it has excellent documentation, which is relatively better than Spring Boot, but also Python is an easier language comparing to Java. Secondly, it provides full-text search whereas Spring Boot does not, which may affect the implementation of search equipment education page function in the project.[8]</p><br>
+          <p>On the other hand, Spring Boot has also got unique advantages against Django. It is relatively easier to set up and start since it has an autoconfiguration feature. Also, its application is relatively safer than Django which is why it is used for enterprise applications. The most important advantage is, since our project aims to provide equipment education service to hospitals across the UK, Django web application can only handle one request at a time whereas Spring Boot can handle multiple requests at a time. This difference may affect the speed of the webpage which has massive impact on the user experience.[8]</p>
+          <p>Since in the first year of undergraduate all members have learned both Java and Python in class, there is no learning cost in terms of programming language. The learning cost difference between these two frameworks is relatively negligible in our views. Due to the fact that Django’s web application may process requests slower than Spring Boot, we decided to use Spring Boot and Java as our framework and programming language for this framework.</p><br>
+          <h5>Frontend Libraries</h5>
+          <p>When choosing libraries and framework for frontend development, we also had two options in sight: ReactJS and VueJS.</p><br>
+          <p>ReactJS is an open-source library created by Facebook for user interface development. It is used in view layer for web and mobile applications [9]. It can be used to create reusable UI components and you have to use it in JavaScript (and some html).</p><br>
+          <p>VueJS is an open-source framework created by Evan You and released in 2014. It is a popular frontend development tool to develop the viewing of the webpage. It is used by companies such as Adobe, Behance, Alibaba, Gitlab, and Xiaomi [10]. Like ReactJS, you have to write your code in JavaScript (and some html).</p><br>
+          <p>VueJS has an advantage compared to ReactJS. It is based on the traditional Model-View-Controller architecture and focusing on web applications mainly, comparing to ReactJS which uses Component Based Architecture, and it is also used for mobile application development [10]. Thus, it is faster and smoother than ReactJS [11].</p><br>
+          <p>ReactJS, however, has serval advantages compared to VueJS in our view. Sinceit can be used to create reusable UI components, there are a lot of libraries and components available online compared to limited resources for VueJS [11]. This is very helpful for us because we can almost guarantee to find ideal free components online to use in our frontend for some implementation. Also, it can be easily deployed as a mobile application with React Native framework which may be useful for the future of the project. </p>
+          <p>Since all members do not have any experience with these two. We think ReactJS would be easier to use since it has more components online for us to implement an ideal function and having the future of the project in mind.</p><br>
+          <h5>Database</h5>
+          <p>Having settled with Spring Boot, we wanted to find a database system that would tie well with Spring Boot, as the REST API would be interacting with the backend.</p>
+          <p>The main contenders were MongoDB and PostgreSQL. MongoDB is a NoSQL database management program. It is used as an alternative to traditional relational databases. These type of databases are useful in regards to working with large datasets of distrubuted data. MongoDB manages document oriented information, can store, and retrieve information. Instead of records, documents are the base unit of data in MongoDB, using Binary JSON (BSON). This means that more datatypes are accomodated for [12].</p><br>
+          <p>PostgreSQL is an open-source object relational database system. It supports both SQL (relational) and JSON (non-relational) querying [13]. Though it uses SQL, we leaned towards PostgreSQL as we have knowledge in SQL already. We also liked that it has JSON, something that a lot of REST APIs use for requests. It is also widely used, and there is support for Java and Spring Boot using PostgreSQL.</p>
+          <br>
+          <h5>Final Decision</h5>
+          <p>After research, we decided to use React as our frontend framework due to its wide usage and how buildable it is. It would also be new to us and enhance our development skills.</p>
+          <p>We also decided on using Spring Boot to for the backend, with a PostgreSQL database. From research, it was a widely used choice in programming. With PostgreSQL's object relational database, we felt as if this went hand-in-hand with Java being object-oriented and Spring Boot using Java to run.</p>
+        </div>
       </div>
     </div>
   </div>
@@ -104,14 +155,29 @@ https://templatemo.com/tm-570-chain-app-dev
           <div class="section-heading  wow fadeInDown" data-wow-duration="1s" data-wow-delay="0.5s">
             <h4>References</h4>
             <img src="assets/images/heading-line-dec.png" alt="">
-            <p>The following list illustrates the MoSCoW requirements of our project</p>
           </div>
         </div>
       </div>
     </div>
     <div class="container">
       <div class="row">
-        <iframe></iframe>
+        <div class="col-lg-10 offset-lg-1 beyond-background">
+          <ol>
+            <li><p>Flipdish, “How QR Code Order & Pay works”. [Online]. Available at: https://www.flipdish.com/gb/what-we-do/ordering/table-ordering [Accessed 21 Feb. 2022]</p></li>
+            <li><p>QR Code Order & Pay with Flipdish. [Video]. Flipdish, 8 Feb. 2022. Available at: https://youtu.be/9-hpRTFZy88 [Accessed 21 Feb. 2022]</p></li>
+            <li><p>QR Code Generator, “Tracking info”, in “How to Use QR Codes for Inventory Management”. [Online]. Available at: https://www.qr-code-generator.com/blog/how-to-use-qr-codes-for-inventory-management/ [Accessed 10 Mar. 2022]</p></li>
+            <li><p>altexsoft, “What is REST API and how does it work”, in “REST API: Key Concepts, Best Practices, and Benefits”. [Online]. Available at: https://www.altexsoft.com/blog/rest-api-design/ [Accessed 10 Mar. 2022]</p></li>
+            <li><p>altexsoft, “REST vs SOAP”, in “REST API: Key Concepts, Best Practices, and Benefits”, 29 May 2020. [Online]. Available at: https://www.altexsoft.com/blog/rest-api-design/ [Accessed 10 Mar. 2022]</p></li>
+            <li><p>IBM, “What is Java Spring Boot?”, in “Java Spring Boot”. [Online]. Available at: https://www.ibm.com/cloud/learn/java-spring-boot [Accessed 12 Mar. 2022]</p></li>
+            <li><p>Wikipedia, “Django”. [Online]. Available at: https://en.wikipedia.org/wiki/Django_(web_framework) [Accessed 12 Mar. 2022]</p></li>
+            <li><p>Admin, “Spring Boot Vs Django”, JavaSterling, 19 Dec. 2020. [Online]. Available at: https://javasterling.com/spring-boot/spring-boot-vs-django/ [Accessed 12 Mar. 2022]</p></li>
+            <li><p>Nitin Pandit, “What is React.js?”, “What And Why React.js”, last updated on 10 Feb. 2021. [Online]. Available at: https://www.c-sharpcorner.com/article/what-and-why-reactjs/ [Accessed 18 Mar. 2022]</p></li>
+            <li><p>altexsoft, “What is Vue.js”, in “The Good and the Bad of Vue.js Framework Programming”, 11 Sep. 2019. [Online]. Available at: https://www.altexsoft.com/blog/engineering/pros-and-cons-of-vue-js/ [Accessed 18 Mar. 2022]</p></li>
+            <li><p>GeeksforGeeks, “Difference between ReactJS and Vue.js”, last updated on 14 Jan. 2021. [Online]. Available at: https://www.geeksforgeeks.org/difference-between-reactjs-and-vue-js/ [Accessed 18 Mar. 2022]</p></li>
+            <li><p>B. Botelho and J. Vaughan, “MongoDB,” SearchDataManagement, 2020. [Online] https://www.techtarget.com/searchdatamanagement/definition/MongoDB#:~:text=MongoDB%20is%20an%20open%20source,information%2C%20store%20or%20retrieve%20information (accessed Mar. 18, 2022).</p></li>
+            <li><p>“What is PostgreSQL,” Postgresqltutorial.com, 2012. [Online] https://www.postgresqltutorial.com/what-is-postgresql/#:~:text=PostgreSQL%20is%20an%20advanced%2C%20enterprise,by%20the%20open%2Dsource%20community. (accessed Mar. 18, 2022).</p></li>
+          </ol>
+        </div>
       </div>
     </div>
   </div>

@@ -2380,6 +2380,14 @@ responsive
   margin: 5px;
   list-style: circle;
 }
+
+.col-lg-10 ol li {
+  display: list-item;
+  margin-left: 50px;
+  list-style: decimal;
+  color: #7a7878;
+}
+
 code[class*="language-"], pre[class*="language-"] {
   white-space: pre-wrap !important; 
   word-break: break-word !important;
