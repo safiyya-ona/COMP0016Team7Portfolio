@@ -468,7 +468,39 @@ https://templatemo.com/tm-570-chain-app-dev
                   role="tabpanel"
                   aria-labelledby="tabUser-tab"
                 >
-                  ...
+                  <p>
+                    Having created an application who's interface will be used
+                    by a wide range of users, we had to ensure user experience
+                    and usability was the top priority. Some features to
+                    maintain this include:
+                  </p>
+                  <ul>
+                    <li>
+                      <p>
+                        Home Page action cards to navigate to the correct
+                        operation with good view
+                      </p>
+                    </li>
+                    <li>
+                      <p>
+                        Menu bar that is responsive to access key pages such as
+                        user profile
+                      </p>
+                    </li>
+                    <li>
+                      <p>
+                        When equipment is scanned and the user has no access to
+                        it, they are taken to a landing page to notify them of
+                        this
+                      </p>
+                    </li>
+                    <li>
+                      <p>
+                        Tables are used through out the program to display data
+                        with more visual appeal
+                      </p>
+                    </li>
+                  </ul>
                 </div>
                 <div
                   class="tab-pane fade"
@@ -476,7 +508,15 @@ https://templatemo.com/tm-570-chain-app-dev
                   role="tabpanel"
                   aria-labelledby="tabFunc-tab"
                 >
-                  ...
+                  <p>
+                    The Clinical QR kit is very functional. It is deployable and
+                    has shown to work well over the internet. QR codes direct to
+                    the correct pages, with landing pages developed when access
+                    to equipment is restricted. These are just a few of the
+                    requirements we have implemented and tested; having
+                    completed the majority of them, the Clinical QR kit is well
+                    functioned.
+                  </p>
                 </div>
                 <div
                   class="tab-pane fade"
@@ -484,32 +524,86 @@ https://templatemo.com/tm-570-chain-app-dev
                   role="tabpanel"
                   aria-labelledby="tabStab-tab"
                 >
-                  ...
+                  <p>
+                    Having not performed any stress/performance testing, it is
+                    difficult to conclude whether the system is stable in high
+                    stress environments. However with normal use, we have not
+                    come across the deployed version crashing the frontend or
+                    backend. Tests are always run when the jar is built, both
+                    locally and deployed - they ensure the catching of bugs, so
+                    unstable code is less likely to be available after
+                    deployment.
+                  </p>
                 </div>
                 <div
                   class="tab-pane fade"
                   id="tabEff"
                   role="tabpanel"
                   aria-labelledby="tabEff-tab"
-                ></div>
+                >
+                  <p>
+                    The Clinical QR kit is moderately efficient. Many tasking
+                    jobs are performed by the frontend, reducing the workload on
+                    the server which needs to run at all times. However, an
+                    improvement, as suggested by one of our users in testing,
+                    would have been to generate the QR codes on the frontend
+                    than generating on the backend. This reduces the need for
+                    the server to remake QR codes when needed, reducing workload
+                    and improving the solution's efficiency.
+                  </p>
+                </div>
                 <div
                   class="tab-pane fade"
                   id="tabComp"
                   role="tabpanel"
                   aria-labelledby="tabComp-tab"
-                ></div>
+                >
+                  <p>
+                    Having created a website, the application is accessible from
+                    devices that are connected to the internet and have an
+                    updated web browser. This means, most mobile devices and
+                    desktop that are in use currently are compatible with the
+                    frontend. In terms of deployment, Java and PostgreSQL will
+                    need to be compatible with the system first to run the
+                    server and API. Java is very widespread, and PostgreSQL is
+                    used on many operating systems, namely Windows, MacOS and
+                    Linux systems such as our deployed version on Ubuntu. With
+                    this, the Clinical QR Kit is very compatible with modern day
+                    architecture.
+                  </p>
+                </div>
                 <div
                   class="tab-pane fade"
                   id="tabMain"
                   role="tabpanel"
                   aria-labelledby="tabMain-tab"
-                ></div>
+                >
+                  <p>
+                    The project is built using great packaging and
+                    modularisation. Having using Java and Spring Boot for the
+                    backend, code is Object Oriented, which is highly
+                    maintainable. The frontend folder has also been created with
+                    the correct conventions for frontend development, so
+                    potential developers are familiar with the structure and can
+                    maintain the code too. The REST API makes it easier for CRUD
+                    actions to be added, increasing maintainability
+                  </p>
+                </div>
                 <div
                   class="tab-pane fade"
                   id="tabProj"
                   role="tabpanel"
                   aria-labelledby="tabProj-tab"
-                ></div>
+                >
+                  <p>
+                    The project has had great management. Coding was delegated
+                    well, with each member being able to interact wiht different
+                    levels of the stack. The gantt chart was used to keep track
+                    of progress, as well as a Trello board for assigning tasks
+                    later on in development. We also met frequently with our
+                    client, and emailed whenever this was not possible.
+                  </p>
+                </div>
               </div>
             </div>
           </div>
@@ -533,7 +627,30 @@ https://templatemo.com/tm-570-chain-app-dev
       </div>
       <div class="container">
         <div class="row">
-          <div class="col-lg-10 offset-lg-1 beyond-background"></div>
+          <div class="col-lg-10 offset-lg-1 beyond-background">
+            <p>
+              QR code generation on frontend: To reduce workload on backend and
+              to reduce costs in terms of hosting, QR code generation on the
+              frontend would have been great to implement with more time as an
+              update feature
+            </p>
+            <br />
+            <p>
+              Increased UI design: The user interface is very simple, however as
+              a team we believe it can be made to look more aesthetically
+              pleasing whilst maintaining its simplicity. Perhaps different
+              themes, a dark mode and more responsive tables could be implmented
+              so users can use more devices to access the kit.
+            </p>
+            <br />
+            <p>
+              Increased testing: This would include performance testing in high
+              demand environments. We would also like to test the frontend with
+              more unit tests. Continuous integration would work well with
+              deployment of code and ensuring tests pass without having to do
+              run them manually.
+            </p>
+          </div>
         </div>
       </div>
     </div>
